@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/vAlarm"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="end"
+        android:layout_marginEnd="64dp"
+        android:layout_marginTop="16dp"
+        app:srcCompat="@drawable/vector_alarm_test"/>
+    <LinearLayout
+        android:id="@+id/vLlMessageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="500dp"
+        android:orientation="vertical">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/vMessageButtonClose"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="end"
+            app:srcCompat="@drawable/vector_alarm_delete_test"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/vMessageButtonImage"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="end"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/vector_alarm_message_test"/>
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>
