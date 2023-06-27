@@ -6,42 +6,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center"
     tools:context=".MainActivity">
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/button_a"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/a"/>
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/vAlarm"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="end"
-        android:layout_marginEnd="64dp"
-        android:layout_marginTop="16dp"
-        app:srcCompat="@drawable/vector_alarm_test"/>
-    <LinearLayout
-        android:id="@+id/vLlMessageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="500dp"
-        android:orientation="vertical">
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/vMessageButtonClose"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="end"
-            app:srcCompat="@drawable/vector_alarm_delete_test"/>
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/vMessageButtonImage"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_gravity="end"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="10dp"
-            app:srcCompat="@drawable/vector_alarm_message_test"/>
-    </LinearLayout>
-
-
-
-
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/button_scan"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/qr_scan"/>
 
 </LinearLayout>

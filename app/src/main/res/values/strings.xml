@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MyTest</string>
+    <string name="a">Animation effect</string>
+    <string name="qr_scan">Qr Scan</string>
 </resources>
