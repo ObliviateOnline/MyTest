@@ -45,7 +45,11 @@ dependencies {
     // MLKit Barcode Scanning依赖
     implementation 'com.google.mlkit:barcode-scanning:17.0.0'
 
+    // 工具类库
     implementation 'com.blankj:utilcodex:1.31.1'
+
+    //动态权限获取(权限简单获取)
+    implementation 'pub.devrel:easypermissions:3.0.0'
 
 //    implementation 'com.google.zxing:core:3.5.1'
 //    implementation 'me.dm7.barcodescanner:zxing:1.9.13'

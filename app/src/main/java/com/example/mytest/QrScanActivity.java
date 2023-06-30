@@ -28,11 +28,15 @@ import com.google.mlkit.vision.barcode.BarcodeScanner;
 import com.google.mlkit.vision.barcode.BarcodeScanning;
 import com.google.mlkit.vision.common.InputImage;
 
-import java.security.Permission;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executors;
 
-public class QrScanActivity extends AppCompatActivity {
+import android.Manifest;
+
+import pub.devrel.easypermissions.AppSettingsDialog;
+import pub.devrel.easypermissions.EasyPermissions;
+
+public class QrScanActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks{
 
     private PreviewView previewView;
     private TextView resultTextView;
@@ -44,27 +48,11 @@ public class QrScanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_qr_scan_activity);
 
-        if (ContextCompat.checkSelfPermission(this, PermissionConstants.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{PermissionConstants.CAMERA}, CAMERA_PERMISSION_CODE);
-        } else {
-            setupCamera();
-        }
+        request();
+
+        setupCamera();
 
 
-    }
-
-    private static final int CAMERA_PERMISSION_CODE = 1;
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == CAMERA_PERMISSION_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                setupCamera();
-            } else {
-                Toast.makeText(this, "权限被拒绝", Toast.LENGTH_SHORT).show();
-            }
-        }
     }
 
     private void setupCamera() {
@@ -134,5 +122,49 @@ public class QrScanActivity extends AppCompatActivity {
         }, ContextCompat.getMainExecutor(this));
     }
 
+    private void request() {
+        String[] permissions = new String[]{
+                Manifest.permission.CAMERA,
+                //可以添加其他的权限，用来判断
+        };
+        //判断有没有权限
+        if (EasyPermissions.hasPermissions(this, permissions)) {
+            // 有权限，需要做什么
+        } else {
+            // 没有权限, 申请权限
+            EasyPermissions.requestPermissions(
+                    this,
+                    "摄像机需要用户允许才能调用，请开启相关权限（理由）",
+                    1,
+                    permissions
+            );
+        }
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
+        for (String temp : perms) {
+            if (temp.equals(Manifest.permission.CAMERA)) {
+                Log.e("QrScanActivity", "CAMERA onPermissionsGranted");
+            }
+        }
+
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
+        Log.d("QrScanActivity", "onPermissionsDenied:" + requestCode + ":" + perms.size());
+        String permissions = Manifest.permission.CAMERA;
+        if (perms.contains(permissions)) {
+            if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+                new AppSettingsDialog.Builder(this)
+                        .setTitle("The permission has been denied by you")
+                        .setRationale("If you do not open the permission, you cannot use this function, click OK to open the permission")
+                        .setRequestCode(12345)
+                        .build()
+                        .show();
+            }
+        }
+    }
 }
 
